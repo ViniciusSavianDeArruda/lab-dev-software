@@ -1,0 +1,15 @@
+# NetBeans
+nbproject/private/
+nbproject/build-impl.xml
+nbproject/genfiles.properties
+nbbuild/
+nbdist/
+.nb-gradle/
+
+# IDEs
+.idea/
+*.iml
+.vscode/
+EOF
+/JavaSwing/target/
+/CadastroAlunos/target/
