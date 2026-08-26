@@ -6,6 +6,7 @@ package com.mycompany.cadastroalunos;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,9 +16,7 @@ public class TelaCadastroAlunos extends javax.swing.JFrame {
 
     private List<Aluno> alunos = new ArrayList<>();
 
-    /**
-     * Creates new form TelaCadastroAlunos
-     */
+  
     public TelaCadastroAlunos() {
         initComponents();
     }
@@ -104,6 +103,12 @@ public class TelaCadastroAlunos extends javax.swing.JFrame {
 
         lblTelefone.setText("Telefone:");
 
+        txtTelefone.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefoneActionPerformed(evt);
+            }
+        });
+
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,10 +128,9 @@ public class TelaCadastroAlunos extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -162,12 +166,16 @@ public class TelaCadastroAlunos extends javax.swing.JFrame {
                                     .addComponent(txtTelefone, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
                                     .addComponent(txtNome)))
                             .addComponent(btnCadastrar)
-                            .addComponent(lblAlunosCadastrados)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(105, 105, 105)
-                                .addComponent(lblTitulo)))
-                        .addGap(0, 76, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(lblTitulo))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addComponent(lblAlunosCadastrados)))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,11 +237,11 @@ public class TelaCadastroAlunos extends javax.swing.JFrame {
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCadastrar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAlunosCadastrados)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         pack();
@@ -267,34 +275,23 @@ public class TelaCadastroAlunos extends javax.swing.JFrame {
                 || curso.isEmpty() || cpf.isEmpty() || rua.isEmpty() || numero.isEmpty()
                 || bairro.isEmpty() || cidade.isEmpty() || !estadoValido || cep.isEmpty()
                 || telefone.isEmpty()) {
-            javax.swing.JOptionPane.showMessageDialog(this,
-                    "Preencha todos os campos obrigatórios.",
-                    "Campos obrigatórios",
-                    javax.swing.JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos obrigatórios", "Alerta", JOptionPane.WARNING_MESSAGE);
             return;
         }
 
-        Aluno aluno = new Aluno(nome, dataNascimento, sexo, matricula, curso, cpf,
-                rua, numero, bairro, cidade, estado, cep, telefone);
+        Aluno aluno = new Aluno(nome, dataNascimento, sexo, matricula, curso, cpf,rua, numero, bairro, cidade, estado, cep, telefone);
+        
         alunos.add(aluno);
+        txtAreaAlunos.append(aluno + "\n");
 
-        atualizarAreaAlunos();
-
-        javax.swing.JOptionPane.showMessageDialog(this,
-                "Aluno cadastrado com sucesso!",
-                "Sucesso",
-                javax.swing.JOptionPane.INFORMATION_MESSAGE);
-
+        JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        
         limparCampos();
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    private void atualizarAreaAlunos() {
-        StringBuilder sb = new StringBuilder();
-        for (Aluno a : alunos) {
-            sb.append(a.toString()).append("\n");
-        }
-        txtAreaAlunos.setText(sb.toString());
-    }
+    private void txtTelefoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefoneActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefoneActionPerformed
 
     private void limparCampos() {
         txtNome.setText("");
