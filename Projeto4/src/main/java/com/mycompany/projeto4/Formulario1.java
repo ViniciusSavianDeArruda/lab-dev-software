@@ -4,7 +4,9 @@
  */
 package com.mycompany.projeto4;
 
+import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class Formulario1 extends javax.swing.JFrame {
@@ -12,9 +14,25 @@ public class Formulario1 extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Formulario1.class.getName());
 
     public char sexo;
+    private Arquivo arquivo;
+    private List<Pessoa> listaPessoa;
     
     public Formulario1() {
         initComponents();
+        arquivo = new Arquivo("pessoas");
+        listaPessoa = arquivo.lerArquivo();
+        carregarTabela();
+    }
+    
+    public void carregarTabela(){
+        DefaultTableModel tabela = (DefaultTableModel) tbl_Pessoa.getModel();
+        
+        tabela.setRowCount(0);
+        
+        for(Pessoa p : listaPessoa){
+            tabela.addRow(p.obterDados());
+ 
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -23,13 +41,15 @@ public class Formulario1 extends javax.swing.JFrame {
 
         btnGlp_Sexo = new javax.swing.ButtonGroup();
         txtNome = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        lblNome = new javax.swing.JLabel();
+        lblSexo = new javax.swing.JLabel();
         rdo_masculino = new javax.swing.JRadioButton();
         rdo_feminino = new javax.swing.JRadioButton();
         btnSalvar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txaPessoas = new javax.swing.JTextArea();
+        lblIdiomas = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbl_Pessoa = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,9 +59,9 @@ public class Formulario1 extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("Nome");
+        lblNome.setText("Nome");
 
-        jLabel2.setText("Sexo");
+        lblSexo.setText("Sexo");
 
         btnGlp_Sexo.add(rdo_masculino);
         rdo_masculino.setText("Masculino");
@@ -61,9 +81,19 @@ public class Formulario1 extends javax.swing.JFrame {
             }
         });
 
-        txaPessoas.setColumns(20);
-        txaPessoas.setRows(5);
-        jScrollPane1.setViewportView(txaPessoas);
+        lblIdiomas.setText("Idiomas");
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Brasil", "ingles", "espanhol" }));
+
+        tbl_Pessoa.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Nome", "Sexo", "Idioma"
+            }
+        ));
+        jScrollPane3.setViewportView(tbl_Pessoa);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,42 +102,49 @@ public class Formulario1 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
+                        .addGap(64, 64, 64)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNome)
+                            .addComponent(lblSexo))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel2))
+                                .addComponent(rdo_masculino)
                                 .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rdo_masculino)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rdo_feminino))
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(rdo_feminino))
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(357, 357, 357)
-                        .addComponent(btnSalvar)))
-                .addContainerGap(383, Short.MAX_VALUE))
+                        .addGap(61, 61, 61)
+                        .addComponent(lblIdiomas)
+                        .addGap(18, 18, 18)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnSalvar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(31, 31, 31)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(lblNome))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
+                    .addComponent(lblSexo)
                     .addComponent(rdo_masculino)
                     .addComponent(rdo_feminino))
-                .addGap(36, 36, 36)
-                .addComponent(btnSalvar)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblIdiomas)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalvar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
@@ -124,24 +161,26 @@ public class Formulario1 extends javax.swing.JFrame {
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         if(rdo_masculino.isSelected()){
             sexo = 'M';
-            JOptionPane.showMessageDialog(null,"Sexo masculino selecionado","Alerta", JOptionPane.OK_OPTION);
-            Pessoa p = new Pessoa(txtNome.getText(), sexo, "Portugues");
-            txaPessoas.append(p +"");
         }
         else if(rdo_feminino.isSelected()){
            sexo = 'F';
-           JOptionPane.showMessageDialog(null,"Selecione um sexo","Alerta", JOptionPane.OK_OPTION);
-           Pessoa p = new Pessoa(txtNome.getText(), sexo, "Portugues");
-           txaPessoas.append(p +"");
         }
-         else{
-           JOptionPane.showMessageDialog(null,"Selecione um sexo","Erro", JOptionPane.ERROR);
-        }
+         else {
+            JOptionPane.showMessageDialog(null, "Selecione um sexo", "Erro", JOptionPane.ERROR_MESSAGE);
+        return;
+}
+        Pessoa p = new Pessoa(txtNome.getText(), sexo, jComboBox1.getSelectedItem().toString());
+        arquivo.adicionarPessoa(p);
+        arquivo.gravarAquivo();
+        listaPessoa = arquivo.lerArquivo();
+        carregarTabela();
+         
+        txtNome.setText("");
+        btnGlp_Sexo.clearSelection();
+        jComboBox1.setSelectedIndex(0);
+  
     }//GEN-LAST:event_btnSalvarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -167,12 +206,14 @@ public class Formulario1 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGlp_Sexo;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JLabel lblIdiomas;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSexo;
     private javax.swing.JRadioButton rdo_feminino;
     private javax.swing.JRadioButton rdo_masculino;
-    private javax.swing.JTextArea txaPessoas;
+    private javax.swing.JTable tbl_Pessoa;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
