@@ -36,57 +36,6 @@ public class Aluno {
         this.telefone = telefone;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public String getMatricula() {
-        return matricula;
-    }
-
-    public String getCurso() {
-        return curso;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
 
     @Override
     public String toString() {
