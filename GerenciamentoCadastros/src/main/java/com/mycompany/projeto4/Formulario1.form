@@ -50,15 +50,22 @@
                       <Component id="lblIdiomas" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                      <Component id="jScrollPane3" min="-2" pref="452" max="-2" attributes="0"/>
+                      <Component id="jScrollPane3" min="-2" pref="735" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="316" max="32767" attributes="0"/>
+              <EmptySpace pref="33" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <Component id="btnExcluir" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnEditar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnSalvar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -80,11 +87,16 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="lblIdiomas" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane3" min="-2" pref="352" max="-2" attributes="0"/>
-              <EmptySpace pref="86" max="32767" attributes="0"/>
+              <Component id="jScrollPane3" min="-2" pref="204" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnSalvar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnExcluir" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnEditar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="194" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -172,5 +184,21 @@
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="btnExcluir">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Excluir"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExcluirActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnEditar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Editar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>

@@ -88,9 +88,17 @@ public class Arquivo {
         }
     }
     
+    public void removerPessoa(int index) {
+    listaPessoa.remove(index);
+   }
+
+    public void atualizarPessoa(int index, Pessoa pessoa) {
+    listaPessoa.set(index, pessoa);
+    }
+    
     public void adicionarPessoa(Pessoa pessoa) {
     listaPessoa.add(pessoa);
-}
+   }
     
-    
 }
+
