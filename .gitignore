@@ -16,3 +16,5 @@ EOF
 /ManipulacaoTextArea/target/
 /GerenciamentoCadastros/target/
 /Biblioteca/nbproject/private/
+/Veiculos/nbproject/private/
+/Veiculos/build/
