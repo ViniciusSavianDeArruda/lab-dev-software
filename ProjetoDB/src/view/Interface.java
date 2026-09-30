@@ -4,6 +4,8 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author laboratorio
@@ -11,7 +13,10 @@ package view;
 public class Interface extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interface.class.getName());
-
+    
+    
+    String sexo;
+    
     /**
      * Creates new form Interface
      */
@@ -28,10 +33,10 @@ public class Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupSexo = new javax.swing.ButtonGroup();
+        btnGrp_sexo = new javax.swing.ButtonGroup();
         lblNome = new javax.swing.JLabel();
         lblSexo = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNome = new javax.swing.JTextField();
         rdo_masculino = new javax.swing.JRadioButton();
         rdo_feminino = new javax.swing.JRadioButton();
         lblIdioma = new javax.swing.JLabel();
@@ -45,13 +50,13 @@ public class Interface extends javax.swing.JFrame {
 
         lblSexo.setText("Sexo");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtNomeActionPerformed(evt);
             }
         });
 
-        grupSexo.add(rdo_masculino);
+        btnGrp_sexo.add(rdo_masculino);
         rdo_masculino.setText("Masculino");
         rdo_masculino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,7 +64,7 @@ public class Interface extends javax.swing.JFrame {
             }
         });
 
-        grupSexo.add(rdo_feminino);
+        btnGrp_sexo.add(rdo_feminino);
         rdo_feminino.setText("Feminino");
         rdo_feminino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,8 +111,8 @@ public class Interface extends javax.swing.JFrame {
                                 .addComponent(rdo_masculino)
                                 .addGap(18, 18, 18)
                                 .addComponent(rdo_feminino))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(248, Short.MAX_VALUE))
+                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(365, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,7 +120,7 @@ public class Interface extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNome)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblSexo)
@@ -126,15 +131,15 @@ public class Interface extends javax.swing.JFrame {
                     .addComponent(cmb_Idioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblIdioma)
                     .addComponent(btnSalvar))
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtNomeActionPerformed
 
     private void rdo_masculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_masculinoActionPerformed
         // TODO add your handling code here:
@@ -149,9 +154,22 @@ public class Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_cmb_IdiomaActionPerformed
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
-        // TODO add your handling code here:
+        if (rdo_masculino.isSelected()) { 
+        sexo = "M"; 
+        JOptionPane.showMessageDialog(null, "Sexo selecionado: " + sexo, "Alerta!", JOptionPane.INFORMATION_MESSAGE); 
+    } else if (rdo_feminino.isSelected()) { 
+        sexo = "F"; 
+        JOptionPane.showMessageDialog(null, "Sexo selecionado: " + sexo, "Alerta!", JOptionPane.INFORMATION_MESSAGE);
+    } 
     }//GEN-LAST:event_btnSalvarActionPerformed
 
+    
+    private void limparFormulario(){
+        txtNome.setText("");
+        btnGrp_sexo.clearSelection();
+        cmb_Idioma.setSelectedIndex(0);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -178,14 +196,14 @@ public class Interface extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btnGrp_sexo;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JComboBox<String> cmb_Idioma;
-    private javax.swing.ButtonGroup grupSexo;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel lblIdioma;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSexo;
     private javax.swing.JRadioButton rdo_feminino;
     private javax.swing.JRadioButton rdo_masculino;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
