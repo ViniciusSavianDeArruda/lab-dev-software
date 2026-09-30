@@ -41,13 +41,14 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
         btnConsultar = new javax.swing.JButton();
         lblID = new javax.swing.JLabel();
         txt_IDPessoa = new javax.swing.JTextField();
-        txtSexo = new javax.swing.JTextField();
-        txtIdioma = new javax.swing.JTextField();
         btnAtualizar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         txt_ID = new javax.swing.JTextField();
         lblID1 = new javax.swing.JLabel();
         btnExlcuir = new javax.swing.JButton();
+        rdo_masculino = new javax.swing.JRadioButton();
+        rdo_feminino = new javax.swing.JRadioButton();
+        cmbIdioma = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,23 +106,31 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
             }
         });
 
+        rdo_masculino.setText("Masculino");
+
+        rdo_feminino.setText("Feminino");
+        rdo_feminino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdo_femininoActionPerformed(evt);
+            }
+        });
+
+        cmbIdioma.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Portugues", "Ingles", "Sistemas Informacao", "Ciencia da computacao", "Jogos Digitais" }));
+        cmbIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbIdiomaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblNome)
-                                    .addComponent(lblSexo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(lblID1)
@@ -132,26 +141,39 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
                                     .addGap(18, 18, 18)
                                     .addComponent(txt_IDPessoa, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblIdioma)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblNome)
+                                            .addComponent(lblSexo))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(rdo_masculino)
+                                                .addGap(29, 29, 29)
+                                                .addComponent(rdo_feminino))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblIdioma)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(42, 42, 42)
+                                        .addComponent(btnConsultar)))
                                 .addGap(18, 18, 18)
-                                .addComponent(txtIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                                .addComponent(btnConsultar)
+                                .addComponent(btnAtualizar)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnAtualizar))))
+                                .addComponent(btnExlcuir))))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(163, 163, 163)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(btnExlcuir)
-                .addGap(57, 57, 57))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(39, 39, 39)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblID1)
                     .addComponent(txt_ID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -164,17 +186,19 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
                     .addComponent(lblNome)
                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblSexo)
-                    .addComponent(txtSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdo_masculino)
+                        .addComponent(rdo_feminino)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblIdioma)
                     .addComponent(btnConsultar)
-                    .addComponent(txtIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtualizar)
-                    .addComponent(btnExlcuir))
-                .addContainerGap(96, Short.MAX_VALUE))
+                    .addComponent(btnExlcuir)
+                    .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAtualizar))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         pack();
@@ -226,12 +250,20 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
         int resposta = JOptionPane.showConfirmDialog(null, "Deseja realmente excluir?", "Exclusao", JOptionPane.YES_NO_OPTION);
         
         if(resposta == JOptionPane.YES_OPTION){
-            PessoaDao pDAO = new PessoaDAO();
+            PessoaDAO pDAO = new PessoaDAO();
             pDAO.excluir(Integer.parseInt(txt_ID.getText()));
             
             limparFormulario();
         }
     }//GEN-LAST:event_btnExlcuirActionPerformed
+
+    private void rdo_femininoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_femininoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_rdo_femininoActionPerformed
+
+    private void cmbIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIdiomaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbIdiomaActionPerformed
 
     
     private void limparFormulario(){
@@ -270,15 +302,16 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExlcuir;
+    private javax.swing.JComboBox<String> cmbIdioma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblID;
     private javax.swing.JLabel lblID1;
     private javax.swing.JLabel lblIdioma;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSexo;
-    private javax.swing.JTextField txtIdioma;
+    private javax.swing.JRadioButton rdo_feminino;
+    private javax.swing.JRadioButton rdo_masculino;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtSexo;
     private javax.swing.JTextField txt_ID;
     private javax.swing.JTextField txt_IDPessoa;
     // End of variables declaration//GEN-END:variables
