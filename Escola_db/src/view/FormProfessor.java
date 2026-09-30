@@ -37,8 +37,8 @@ public class FormProfessor extends javax.swing.JFrame {
         lblIdade = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtIdade = new javax.swing.JTextField();
-        txtDisciplina = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
+        cmbDisciplina = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,6 +74,8 @@ public class FormProfessor extends javax.swing.JFrame {
             }
         });
 
+        cmbDisciplina.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Matematica", "Historia", "Ciencia da computacao", "Biologia", "Economia", " ", " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -82,11 +84,13 @@ public class FormProfessor extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(148, 148, 148)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblDisciplina)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDisciplina))
+                                .addComponent(cmbDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCadastrar))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -94,9 +98,7 @@ public class FormProfessor extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(28, 28, 28)
-                        .addComponent(btnCadastrar))
+                                    .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(232, 232, 232)
                         .addComponent(lblTitulo)))
@@ -118,8 +120,8 @@ public class FormProfessor extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDisciplina)
-                    .addComponent(txtDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrar))
+                    .addComponent(btnCadastrar)
+                    .addComponent(cmbDisciplina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(248, Short.MAX_VALUE))
         );
 
@@ -139,7 +141,7 @@ public class FormProfessor extends javax.swing.JFrame {
         Professor p = new Professor();
         p.setNome(txtNome.getText());
         p.setIdade(Integer.parseInt(txtIdade.getText()));
-        p.setDisciplina(txtDisciplina.getText());
+        p.setDisciplina(cmbDisciplina.getSelectedItem().toString());
 
         new ProfessorDAO().inserir(p);
         javax.swing.JOptionPane.showMessageDialog(this, "Professor cadastrado com sucesso!");
@@ -154,7 +156,7 @@ public class FormProfessor extends javax.swing.JFrame {
     private void limparCampos() {
     txtNome.setText("");
     txtIdade.setText("");
-    txtDisciplina.setText("");
+    cmbDisciplina.setSelectedIndex(0);
     txtNome.requestFocus();
 }
     
@@ -185,11 +187,11 @@ public class FormProfessor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JComboBox<String> cmbDisciplina;
     private javax.swing.JLabel lblDisciplina;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtDisciplina;
     private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables

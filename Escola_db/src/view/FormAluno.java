@@ -39,8 +39,8 @@ public class FormAluno extends javax.swing.JFrame {
         lblTitulo = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
         txtIdade = new javax.swing.JTextField();
-        txtCurso = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
+        cmbCurso = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,6 +76,8 @@ public class FormAluno extends javax.swing.JFrame {
             }
         });
 
+        cmbCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione", "Matematica", "Historia", "Ciencia da computacao", "Biologia", " ", " " }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,11 +92,8 @@ public class FormAluno extends javax.swing.JFrame {
                 .addGap(91, 91, 91)
                 .addComponent(jLabel2)
                 .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblCurso)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCurso))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblCurso)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNome, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -102,9 +101,11 @@ public class FormAluno extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCadastrar))
                             .addComponent(txtIdade, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(28, 28, 28)
-                .addComponent(btnCadastrar)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -125,8 +126,8 @@ public class FormAluno extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCurso)
-                    .addComponent(txtCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCadastrar))
+                    .addComponent(btnCadastrar)
+                    .addComponent(cmbCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(14, 14, 14)
                 .addComponent(jLabel5)
                 .addContainerGap(200, Short.MAX_VALUE))
@@ -148,7 +149,7 @@ public class FormAluno extends javax.swing.JFrame {
         Aluno a = new Aluno();
         a.setNome(txtNome.getText());
         a.setIdade(Integer.parseInt(txtIdade.getText()));
-        a.setCurso(txtCurso.getText());
+        a.setCurso(cmbCurso.getSelectedItem().toString());
 
         new AlunoDAO().inserir(a);
         
@@ -165,7 +166,7 @@ public class FormAluno extends javax.swing.JFrame {
     private void limparCampos() {
     txtNome.setText("");
     txtIdade.setText("");
-    txtCurso.setText("");
+    cmbCurso.setSelectedIndex(0);
     txtNome.requestFocus();
 }
     
@@ -197,13 +198,13 @@ public class FormAluno extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JComboBox<String> cmbCurso;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblCurso;
     private javax.swing.JLabel lblIdade;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtCurso;
     private javax.swing.JTextField txtIdade;
     private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
