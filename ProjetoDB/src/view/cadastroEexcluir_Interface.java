@@ -34,6 +34,7 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGrp_Sexo = new javax.swing.ButtonGroup();
         lblNome = new javax.swing.JLabel();
         lblSexo = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -106,8 +107,10 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
             }
         });
 
+        btnGrp_Sexo.add(rdo_masculino);
         rdo_masculino.setText("Masculino");
 
+        btnGrp_Sexo.add(rdo_feminino);
         rdo_feminino.setText("Feminino");
         rdo_feminino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -192,12 +195,13 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
                         .addComponent(rdo_masculino)
                         .addComponent(rdo_feminino)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIdioma)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnConsultar)
-                    .addComponent(btnExlcuir)
-                    .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAtualizar))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblIdioma)
+                        .addComponent(btnExlcuir)
+                        .addComponent(cmbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAtualizar)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
 
@@ -210,19 +214,23 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         int idPessoa = Integer.parseInt(txt_ID.getText());
+
         PessoaDAO pDAO = new PessoaDAO();
-        
         Pessoa p = pDAO.getPessoa(idPessoa);
-        if(p == null){
-            txtNome.setText("");
-            txtSexo.setText("");
-            txtIdioma.setText("");
-            
-        } else{
-            txtNome.setText(p.getNome());
-            txtSexo.setText(p.getSexo());
-            txtIdioma.setText(p.getIdioma());
+
+        if (p == null) {limparFormulario();JOptionPane.showMessageDialog(this, "Pessoa não encontrada!");
+    } else {
+        txt_IDPessoa.setText(String.valueOf(p.getId()));
+        txtNome.setText(p.getNome());
+
+        if (p.getSexo().equals("M")) {
+            rdo_masculino.setSelected(true);
+        } else {
+            rdo_feminino.setSelected(true);
         }
+
+        cmbIdioma.setSelectedItem(p.getIdioma());
+    }
         
     }//GEN-LAST:event_btnConsultarActionPerformed
 
@@ -235,14 +243,23 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_IDActionPerformed
 
     private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        String sexo = null;
+        
+        if (rdo_masculino.isSelected()) {
+            sexo = "M";
+        } else if (rdo_feminino.isSelected()) {
+            sexo = "F";
+        }
+        
         Pessoa p = new Pessoa();
         
         p.setId(Integer.parseInt(txt_ID.getText()));
-        p.setNome(txtSexo.getText());
-        p.setIdioma(txtIdioma.getText());
+        p.setNome(txtNome.getText());
+        p.setIdioma(cmbIdioma.getSelectedItem().toString());
         
         PessoaDAO pDAO = new PessoaDAO();
         pDAO.editar(p);
+        
         limparFormulario();
     }//GEN-LAST:event_btnAtualizarActionPerformed
 
@@ -266,13 +283,13 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbIdiomaActionPerformed
 
     
-    private void limparFormulario(){
+    private void limparFormulario() {
         txt_ID.setText("");
+        txt_IDPessoa.setText("");
         txtNome.setText("");
-        txtSexo.setText(sexo);
-        txtIdioma.setText("");
-        
-    }
+        btnGrp_Sexo.clearSelection();
+        cmbIdioma.setSelectedIndex(0);
+}
     /**
      * @param args the command line arguments
      */
@@ -302,6 +319,7 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
     private javax.swing.JButton btnAtualizar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExlcuir;
+    private javax.swing.ButtonGroup btnGrp_Sexo;
     private javax.swing.JComboBox<String> cmbIdioma;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblID;
