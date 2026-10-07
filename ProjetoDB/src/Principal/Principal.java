@@ -16,8 +16,7 @@ public class Principal {
     public static void main(String[] args) {
         Conexao c = new Conexao();
         c.getConexao();    
-        Pessoa p = new Pessoa();
-        
+        Pessoa p = new Pessoa();       
         p.setNome("Vitor Bortoluzzi");
         p.setIdioma("Portugues");
         p.setSexo("M");

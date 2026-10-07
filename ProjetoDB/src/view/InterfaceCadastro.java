@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
  *
  * @author laboratorio
  */
-public class Interface extends javax.swing.JFrame {
+public class InterfaceCadastro extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interface.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(InterfaceCadastro.class.getName());
     
     
     String sexo;
@@ -20,7 +20,7 @@ public class Interface extends javax.swing.JFrame {
     /**
      * Creates new form Interface
      */
-    public Interface() {
+    public InterfaceCadastro() {
         initComponents();
     }
 
@@ -192,7 +192,7 @@ public class Interface extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new Interface().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new InterfaceCadastro().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -125,5 +125,36 @@ public class PessoaDAO {
     return listaPessoas; //Retorna a lista preenchida (ou vazia se der erro)
 }
     
+    public List<Pessoa> getPessoasNome(String nome, String sexo) {
+    String sql = "SELECT * FROM pessoa WHERE nome LIKE ? AND sexo LIKE ?  ";
+    
+    try {
+        PreparedStatement stat = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                ResultSet.CONCUR_UPDATABLE);
+        
+        stat.setString(1, "%"+ nome+ "%");
+        stat.setString(2, "%"+ sexo+ "%");
+        ResultSet rs = stat.executeQuery();
+        
+        List<Pessoa> listaPessoas = new ArrayList(); 
+        
+        while (rs.next()) {
+            Pessoa p = new Pessoa();
+            
+            p.setId(rs.getInt("Id"));
+            p.setNome(rs.getString("nome"));
+            p.setSexo(rs.getString("sexo"));
+            p.setIdioma(rs.getString("idioma")); 
+            
+            listaPessoas.add(p);
+        }
+        return listaPessoas;
+    } catch (SQLException ex) {
+        System.out.println("Erro ao consultar todas as pessoas: " + ex.getMessage());
+        return null;
+    }
+    
+}
+    
 
 }

@@ -26,10 +26,20 @@ public class RelatorioPessoas extends javax.swing.JFrame {
     }
     
     public void preencherTabela(){
+        String sexo = "";
         PessoaDAO pDAO = new PessoaDAO();
-        List<Pessoa> listaPessoas = pDAO.getPessoas();
+        //List<Pessoa> listaPessoas = pDAO.getPessoas();
         
-        DefaultTableModel tabelaPessoas = (DefaultTableModel) tbl_pessoas.getModel();
+        if(rdo_masculino.isSelected())
+            sexo = "M";
+        else if(rdo_feminino.isSelected())
+            sexo = "F";
+        else
+            sexo = "";
+        
+        List<Pessoa> listaPessoas = pDAO.getPessoasNome(txtNome.getText(), lblSexo.getText());
+        DefaultTableModel tabelaPessoas = (DefaultTableModel) jTable1.getModel();
+        tabelaPessoas.setRowCount(0); // Limpa a tabela antes de preencher para evitar duplicar dados
         
         for(Pessoa p : listaPessoas){
             Object[] obj = new Object[]{
@@ -52,13 +62,24 @@ public class RelatorioPessoas extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        btn_GrupSexo = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbl_pessoas = new javax.swing.JTable();
+        jTable1 = new javax.swing.JTable();
+        txtNome = new javax.swing.JTextField();
+        lblNome = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblSexo = new javax.swing.JLabel();
+        rdo_masculino = new javax.swing.JRadioButton();
+        rdo_feminino = new javax.swing.JRadioButton();
+        btnLimpar = new javax.swing.JButton();
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel1.setText("Relatorio de Pessoas ");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -66,53 +87,123 @@ public class RelatorioPessoas extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane2.setViewportView(jTable2);
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel1.setText("Relatorio de Pessoas ");
-
-        tbl_pessoas.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
                 "Id", "Nome", "Sexo", "Idioma"
             }
         ));
-        jScrollPane1.setViewportView(tbl_pessoas);
+        jScrollPane1.setViewportView(jTable1);
+
+        txtNome.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                txtNomeCaretUpdate(evt);
+            }
+        });
+
+        lblNome.setText("Nome");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("FILTRO DE DADOS");
+
+        lblSexo.setText("Sexo");
+
+        btn_GrupSexo.add(rdo_masculino);
+        rdo_masculino.setText("Masculina");
+        rdo_masculino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdo_masculinoActionPerformed(evt);
+            }
+        });
+
+        btn_GrupSexo.add(rdo_feminino);
+        rdo_feminino.setText("Feminino");
+        rdo_feminino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rdo_femininoActionPerformed(evt);
+            }
+        });
+
+        btnLimpar.setText("Limpar");
+        btnLimpar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimparActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(131, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(132, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(211, 211, 211))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))))
+                        .addGap(84, 84, 84))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(lblSexo)
+                            .addGap(18, 18, 18)
+                            .addComponent(rdo_masculino)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(rdo_feminino)
+                            .addGap(191, 191, 191))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(lblNome)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(41, 41, 41)
+                                    .addComponent(btnLimpar)))
+                            .addGap(61, 61, 61)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(31, 31, 31)
+                .addGap(46, 46, 46)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNome)
+                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLimpar))
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSexo)
+                    .addComponent(rdo_masculino)
+                    .addComponent(rdo_feminino))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addGap(91, 91, 91))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtNomeCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtNomeCaretUpdate
+        preencherTabela();
+    }//GEN-LAST:event_txtNomeCaretUpdate
+
+    private void rdo_masculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_masculinoActionPerformed
+        preencherTabela();
+    }//GEN-LAST:event_rdo_masculinoActionPerformed
+
+    private void rdo_femininoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rdo_femininoActionPerformed
+        preencherTabela();
+    }//GEN-LAST:event_rdo_femininoActionPerformed
+
+    private void btnLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimparActionPerformed
+        txtNome.setText("");
+        btn_GrupSexo.clearSelection();
+    }//GEN-LAST:event_btnLimparActionPerformed
+
+    
+  
     /**
      * @param args the command line arguments
      */
@@ -139,10 +230,16 @@ public class RelatorioPessoas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpar;
+    private javax.swing.ButtonGroup btn_GrupSexo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable tbl_pessoas;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSexo;
+    private javax.swing.JRadioButton rdo_feminino;
+    private javax.swing.JRadioButton rdo_masculino;
+    private javax.swing.JTextField txtNome;
     // End of variables declaration//GEN-END:variables
 }
