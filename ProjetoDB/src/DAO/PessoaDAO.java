@@ -96,7 +96,34 @@ public class PessoaDAO {
             System.out.println("Erro ao excluir pessoa:"+ex.getMessage());
         }
     }
-
+    
+    public List<Pessoa> getPessoas() {
+    String sql = "SELECT * FROM pessoa";
+    List<Pessoa> listaPessoas = new ArrayList<>(); // Declarada fora para ter escopo em todo o método
+    
+    try {
+        PreparedStatement stat = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, 
+                ResultSet.CONCUR_UPDATABLE);
+        
+        ResultSet rs = stat.executeQuery();
+        
+        while (rs.next()) {
+            Pessoa p = new Pessoa();
+            
+            p.setId(rs.getInt("Id"));
+            p.setNome(rs.getString("nome"));
+            p.setSexo(rs.getString("sexo"));
+            p.setIdioma(rs.getString("idioma")); 
+            
+            listaPessoas.add(p);
+        }
+        
+    } catch (SQLException ex) {
+        System.out.println("Erro ao consultar todas as pessoas: " + ex.getMessage());
+    }
+    
+    return listaPessoas; //Retorna a lista preenchida (ou vazia se der erro)
+}
     
 
 }

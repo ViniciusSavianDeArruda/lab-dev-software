@@ -12,16 +12,16 @@ import javax.swing.JOptionPane;
  *
  * @author laboratorio
  */
-public class cadastroEexcluir_Interface extends javax.swing.JFrame {
+public class CadastrarPessoa extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(cadastroEexcluir_Interface.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(CadastrarPessoa.class.getName());
 
     String sexo;
     
     /**
      * Creates new form cadastroEexcluir_Interface
      */
-    public cadastroEexcluir_Interface() {
+    public CadastrarPessoa() {
         initComponents();
     }
 
@@ -312,7 +312,7 @@ public class cadastroEexcluir_Interface extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new cadastroEexcluir_Interface().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new CadastrarPessoa().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

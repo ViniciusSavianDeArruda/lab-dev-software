@@ -7,6 +7,7 @@ package projetodb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ public class Conexao {
                     "root","laboratorio");
             System.out.println("Conexão efetuada!");
             return conn;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Erro ao conectar no BD"+e.getMessage());
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, e);
         }
