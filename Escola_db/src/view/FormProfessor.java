@@ -20,6 +20,8 @@ public class FormProfessor extends javax.swing.JFrame {
      */
     public FormProfessor() {
         initComponents();
+        
+       setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

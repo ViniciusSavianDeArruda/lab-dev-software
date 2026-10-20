@@ -16,6 +16,9 @@ import conexao_db.Conexao;
  */
 public class Principal {
     public static void main(String[] args) {
+      java.awt.EventQueue.invokeLater(() -> {new view.MenuPrincipal().setVisible(true); 
+      
+    });
         Conexao c = new Conexao();
         c.getConexao();
         

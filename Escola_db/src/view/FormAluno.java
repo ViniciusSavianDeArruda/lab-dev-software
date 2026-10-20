@@ -20,6 +20,8 @@ public class FormAluno extends javax.swing.JFrame {
      */
     public FormAluno() {
         initComponents();
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

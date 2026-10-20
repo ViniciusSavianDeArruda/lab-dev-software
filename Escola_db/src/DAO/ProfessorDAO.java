@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -83,4 +85,39 @@ public class ProfessorDAO{
             System.out.println("Erro ao atualizar professor: " + ex.getMessage());
         }
     }
+     
+    public List<Professor> listarPorNome(String nome) {
+    List<Professor> professores = new ArrayList<>();
+
+        String sql = "SELECT * FROM professores WHERE nome LIKE ?";
+
+        try {
+            
+        PreparedStatement stmt = conn.prepareStatement(sql);
+        stmt.setString(1, "%" + nome + "%");
+
+        ResultSet rs = stmt.executeQuery();
+
+        while (rs.next()) {
+            Professor professor = new Professor();
+
+            professor.setId(rs.getInt("id"));
+            professor.setNome(rs.getString("nome"));
+            professor.setIdade(rs.getInt("idade"));
+            professor.setDisciplina(rs.getString("disciplina"));
+
+            professores.add(professor);
+        }
+
+        rs.close();
+        stmt.close();
+
+    } catch (SQLException e) {
+        System.out.println("Erro ao listar professores: " + e.getMessage());
+    }
+
+    return professores;
+} 
+     
+     
 }
