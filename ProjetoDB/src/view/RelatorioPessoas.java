@@ -23,6 +23,8 @@ public class RelatorioPessoas extends javax.swing.JFrame {
     public RelatorioPessoas() {
         initComponents();
         preencherTabela();
+        
+         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
     
     public void preencherTabela(){
@@ -37,7 +39,8 @@ public class RelatorioPessoas extends javax.swing.JFrame {
         else
             sexo = "";
         
-        List<Pessoa> listaPessoas = pDAO.getPessoasNome(txtNome.getText(), lblSexo.getText());
+       
+        List<Pessoa> listaPessoas = pDAO.getPessoasNome(txtNome.getText(), sexo);
         DefaultTableModel tabelaPessoas = (DefaultTableModel) jTable1.getModel();
         tabelaPessoas.setRowCount(0); // Limpa a tabela antes de preencher para evitar duplicar dados
         

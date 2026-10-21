@@ -22,6 +22,8 @@ public class InterfaceCadastro extends javax.swing.JFrame {
      */
     public InterfaceCadastro() {
         initComponents();
+        
+         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**

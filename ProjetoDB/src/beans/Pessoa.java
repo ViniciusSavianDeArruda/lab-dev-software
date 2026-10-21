@@ -45,5 +45,12 @@ public class Pessoa {
     public void setIdioma(String idioma) {
         this.idioma = idioma;
     }
+
+    @Override
+    public String toString() {
+        return this.id+ " - " + this.nome;
+    }
+    
+    
     
 }

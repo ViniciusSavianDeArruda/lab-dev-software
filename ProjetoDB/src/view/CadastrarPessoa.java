@@ -23,6 +23,9 @@ public class CadastrarPessoa extends javax.swing.JFrame {
      */
     public CadastrarPessoa() {
         initComponents();
+        
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        
     }
 
     /**
