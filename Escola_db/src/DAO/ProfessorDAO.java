@@ -117,7 +117,38 @@ public class ProfessorDAO{
     }
 
     return professores;
-} 
+}
+    
+    public List<Professor> getProfessores() {
+    List<Professor> professores = new ArrayList<>();
+
+    String sql = "SELECT * FROM professores ORDER BY nome";
+
+    try (PreparedStatement stmt = conn.prepareStatement(sql);
+         ResultSet rs = stmt.executeQuery()) {
+
+        while (rs.next()) {
+            Professor professor = new Professor();
+
+            professor.setId(rs.getInt("id"));
+            professor.setNome(rs.getString("nome"));
+            professor.setIdade(rs.getInt("idade"));
+            professor.setDisciplina(rs.getString("disciplina"));
+
+            professores.add(professor);
+        }
+
+    } catch (SQLException ex) {
+        throw new RuntimeException(
+            "Erro ao buscar professores: " + ex.getMessage(), ex
+        );
+    }
+
+    return professores;
+}
+
+    
+    
      
      
 }

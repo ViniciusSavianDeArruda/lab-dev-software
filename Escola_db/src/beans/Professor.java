@@ -45,4 +45,12 @@ public class Professor {
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
     }
+
+    @Override
+    public String toString() {
+        return this.id + " - " + this.nome;
+    }
+    
+    
+    
 }
