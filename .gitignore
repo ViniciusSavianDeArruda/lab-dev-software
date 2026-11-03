@@ -18,3 +18,8 @@ EOF
 /Biblioteca/nbproject/private/
 /Veiculos/nbproject/private/
 /Veiculos/build/
+
+# Arquivos gerados pelo NetBeans
+**/build/
+**/dist/
+*.class
