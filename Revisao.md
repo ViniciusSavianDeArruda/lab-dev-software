@@ -1,5 +1,7 @@
 # Guia de Revisão para a Prova — Desenvolvimento de Sistemas
 
+import java.sql.*;
+
 ## A IDEIA PRINCIPAL
 
 **Banco de Dados → Conexão → Beans → DAO → Formulários → Menu**
